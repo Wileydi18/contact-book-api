@@ -1,0 +1,468 @@
+{
+  "info": {
+    "name": "Contact Book API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "GET lista (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        }
+      }
+    },
+    {
+      "name": "GET por id (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "GET id inexistente (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "999"
+          ]
+        }
+      }
+    },
+    {
+      "name": "POST crear (201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ana Espinal\",\n  \"phone\": \"829-755-0200\",\n  \"email\": \"ana@correo.com\",\n  \"category\": \"friends\",\n  \"favorite\": false\n}"
+        }
+      }
+    },
+    {
+      "name": "POST sin name (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phone\": \"809-555-0201\"\n}"
+        }
+      }
+    },
+    {
+      "name": "POST phone inválido (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test\",\n  \"phone\": \"abc123456\"\n}"
+        }
+      }
+    },
+    {
+      "name": "POST email inválido (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test\",\n  \"phone\": \"809-555-0202\",\n  \"email\": \"no-es-email\"\n}"
+        }
+      }
+    },
+    {
+      "name": "POST category inválida (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test\",\n  \"phone\": \"809-555-0203\",\n  \"category\": \"enemies\"\n}"
+        }
+      }
+    },
+    {
+      "name": "POST teléfono repetido (409)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Clon\",\n  \"phone\": \"+1 809-555-0101\"\n}"
+        }
+      }
+    },
+    {
+      "name": "PUT reemplazar (200)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/2",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "2"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Brenda Reyes Actualizado\",\n  \"phone\": \"809-865-0102\",\n  \"category\": \"work\",\n  \"favorite\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "PUT inexistente (404)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "999"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Nadie\",\n  \"phone\": \"809-555-0999\"\n}"
+        }
+      }
+    },
+    {
+      "name": "PUT teléfono de otro (409)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/2",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "2"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Aura\",\n  \"phone\": \"+1 809-555-0101\"\n}"
+        }
+      }
+    },
+    {
+      "name": "PATCH favorite (200)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/1/favorite",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "1",
+            "favorite"
+          ]
+        }
+      }
+    },
+    {
+      "name": "PATCH inexistente (404)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/999/favorite",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "999",
+            "favorite"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DELETE sin API key (401)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/3",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "3"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DELETE API key errónea (401)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "mala"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/3",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "3"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DELETE con API key (204)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "studio266-123"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/3",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "3"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DELETE inexistente (404)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "studio266-123"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "999"
+          ]
+        }
+      }
+    },
+    {
+      "name": "GET stats sin header (400)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/stats/summary",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "stats",
+            "summary"
+          ]
+        }
+      }
+    },
+    {
+      "name": "GET stats con x-client-id (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-client-id",
+            "value": "talendig-frontend"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/stats/summary",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "stats",
+            "summary"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ruta inexistente (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/nada",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "nada"
+          ]
+        }
+      }
+    }
+  ]
+}
